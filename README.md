@@ -1,5 +1,10 @@
 # prometheus-stuffs
 
+- Check diffrent branches for different project related to prometheus monitoring
+    - Branch's Brief Description:
+        - `prometheus-demo`:
+            - just the basic server and it's monitoring by prometheus
+
 ## Basics
 
 - Prometheus was created to monitor highly dynamic container environments, like: kubernetes
@@ -8,24 +13,6 @@
 - identify problems before the event occur and alerts the system administrators (you can set the threshold)
 - So, it is basically automated monitoring and alerting tools 
 
-## How does it work
-
-- It's core/main component is `Prometheus Server`
-    - does the actual monitoring work
-    - It made up of three parts
-        - Time Series Database
-            - stores all the metrics data, like:
-                - CPU usage
-                - Number of exceptions in an application
-        - Data Retrieval Worker
-            - it pulls/gets metrics data from:
-                - applications
-                - services, server,.. and other target resources
-                - and store/push them into the database
-        - Web sever or server api, Accepts PromQL queries
-            - accepts queries for that stored data
-            - server api is used to display the data in a dashboard or UI
-                - like: prometheus UI or Grafana etc.
 
 ## How to use this branch's code
 

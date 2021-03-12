@@ -4,6 +4,31 @@
     - Branch's Brief Description:
         - `prometheus-demo`:
             - just the basic server and it's monitoring by prometheus
+        - `prometheus-demo-with-grafana`:
+            - added prometheus operator and related things with Grafana as visualization tool with `prometheus-demo` branch codes
+
+## How to use this branch
+
+- `kubectl apply -f manifests/prom-rbac.yaml`
+- `kubectl apply -f manifests/prom-deploy.yaml`
+- `kubectl apply -f manifests/prom-server-rbac.yaml`
+- `kubectl apply -f manifests/prom-server.yaml`
+- `kubectl apply -f manifests/prom-server-svc.yaml`
+- `kubectl apply -f manifests/grafana.yaml`
+- `kubectl apply -f manifests/demo-deployment.yaml`
+- `kubectl apply -f manifests/demo-svc.yaml`
+- `kubectl port-forward svc/prometheus-demo-svc 8080`
+- `kubectl apply -f manifests/demo-app-service-monitor.yaml`
+- `kubectl port-forward svc/prometheus 9090`
+- `kubectl <grafana_pod> 3000 `
+
+- Now go to these:
+    - `http://localhost:9090`: For prometheus dashboard and go to `Status` --> `targets` --> `Graphs` --> use `http_requests_total` query
+    - the Visit `http://localhost:3000` for grafana
+        - Our prometheus server exposing metrics at http://prometheus.default.svc:9090 (format: http://service-name.namespace.svc:port) endpoint.
+        - Now we need to add data source to grafana dashboard. We need to find the prometheus service endpoint where it is exposing its data.
+        - go to `+` --> `Dashboard` --> `Add Query` --> select your monitored app from the field `Query`
+        - now write query in the below box to see the graph, ex: `http_requests_total` after writing this click your mouse pointer in outside of that box to apply the query.
 
 ## Basics
 
